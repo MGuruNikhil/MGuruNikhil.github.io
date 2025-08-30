@@ -12,10 +12,16 @@ import IconSprite from './IconSprite.astro'
       <a class="icon-link" href="https://www.linkedin.com/in/gurunikhilm/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
         <svg class="icon"><use href="#icon-linkedin" /></svg>
       </a>
+  <a class="text-sm muted-theme hover:underline" href="/resume">Resume</a>
   <a class="text-sm muted-theme hover:underline" href="mailto:gurunikhilmangaraju@gmail.com">Contact</a>
     </div>
 
     <div class="mt-3">© <span id="year"></span> Guru Nikhil Mangaraju</div>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var el = document.getElementById('year');
+      if (el) el.textContent = String(new Date().getFullYear());
+    })();
+  </script>
 </footer>
