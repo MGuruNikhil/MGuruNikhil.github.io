@@ -41,7 +41,23 @@
 body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
 
 /* Basic element styles */
-body{background-color:var(--bg); color:var(--fg)}
+/* Make sure the page always fills the viewport so the footer sits at the bottom
+   and no browser background (eg. black) is visible behind short pages. */
+/* Make sure html and body always cover the viewport so any scroll area shows
+   the site background (not the browser default). */
+html, body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+/* Dark mode background on the root html element so scrollbars/overflow also show dark bg */
+html.dark {
+  background-color: var(--mantle);
+}
+
+/* Ensure main element expands when content is short but allows normal page scrolling when content overflows */
+main{flex: 1 0 auto}
 
 /* Utility subtle animation for links */
 .link-underline {

@@ -8,21 +8,30 @@ import Layout from '../layouts/Layout.astro'
 
     <form class="mt-6 space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
       <label class="block">
-        <span class="text-sm">Name</span>
-        <input name="name" class="mt-1 block w-full rounded border-gray-300 shadow-sm" required />
+        <span class="text-sm font-medium text-[var(--fg)]">Name</span>
+        <input name="name" required
+          class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]" />
       </label>
+
       <label class="block">
-        <span class="text-sm">Email</span>
-        <input name="email" type="email" class="mt-1 block w-full rounded border-gray-300 shadow-sm" required />
+        <span class="text-sm font-medium text-[var(--fg)]">Email</span>
+        <input name="email" type="email" required
+          class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]" />
       </label>
+
       <label class="block">
-        <span class="text-sm">Message</span>
-        <textarea name="message" rows="5" class="mt-1 block w-full rounded border-gray-300 shadow-sm" required></textarea>
+        <span class="text-sm font-medium text-[var(--fg)]">Message</span>
+        <textarea name="message" rows="5" required
+          class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]"></textarea>
       </label>
-      <button type="submit" class="inline-flex items-center px-4 py-2 bg-[var(--blue)] text-white rounded">Send</button>
+
+      <div class="flex items-center gap-3">
+        <button type="submit" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] text-white rounded-md hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">Send</button>
+        <span class="text-sm text-[var(--muted)]">I'll reply within a few days.</span>
+      </div>
     </form>
 
-    <div class="mt-8 text-sm">
+    <div class="mt-8 text-sm space-y-1 text-[var(--fg)]">
       <p>GitHub: <a href="https://github.com/MGuruNikhil" class="text-[var(--blue)]">github.com/MGuruNikhil</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/gurunikhilm/" class="text-[var(--blue)]">/in/gurunikhilm</a></p>
       <p>LeetCode: <a href="https://leetcode.com/u/GuruNikhilM/" class="text-[var(--blue)]">LeetCode</a></p>
