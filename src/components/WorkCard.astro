@@ -1,0 +1,14 @@
+---
+const { role, company, location, start, end, bullets, tech } = Astro.props
+---
+
+<article class="border card-border card-bg rounded p-4">
+  <h3 class="font-semibold">{role}{company ? `, ${company}` : ''}</h3>
+  <p class="text-sm muted-theme">{start} - {end} · {location}</p>
+  {bullets && bullets.length ? (
+    <ul class="mt-2 list-disc list-inside text-sm muted-theme">
+      {bullets.map(b => <li>{b}</li>)}
+    </ul>
+  ) : null}
+  {tech ? <p class="text-xs mt-2 muted-theme">Tech: {tech}</p> : null}
+</article>

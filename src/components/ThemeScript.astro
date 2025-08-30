@@ -1,0 +1,41 @@
+---
+---
+<!-- Inline script that runs before the page renders to avoid FOUC. It sets the 'dark' class on <html>
+     based on saved user preference, OS preference, or default. It also exposes a window.toggleTheme()
+     function used by the header button to switch themes and persist the choice. -->
+<script is:inline>
+;(function () {
+  try {
+    var storageKey = 'theme-preference'
+    var stored = localStorage.getItem(storageKey)
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    function applyTheme(isDark) {
+      var root = document.documentElement
+      if (isDark) root.classList.add('dark')
+      else root.classList.remove('dark')
+      // update data attribute for CSS selectors if needed
+      root.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    }
+
+    var useDark = stored === 'dark' ? true : stored === 'light' ? false : prefersDark
+    applyTheme(useDark)
+
+    window.toggleTheme = function () {
+      var root = document.documentElement
+      var isDark = root.classList.toggle('dark')
+      localStorage.setItem(storageKey, isDark ? 'dark' : 'light')
+      root.setAttribute('data-theme', isDark ? 'dark' : 'light')
+
+      // Emit a custom event for UI pieces to update their aria-pressed states or icons
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: isDark ? 'dark' : 'light' } }))
+      return isDark
+    }
+
+    // Provide synchronous helper to get current theme
+    window.getTheme = function () { return document.documentElement.classList.contains('dark') ? 'dark' : 'light' }
+  } catch (e) {
+    console.warn('Theme script failed', e)
+  }
+})()
+</script>

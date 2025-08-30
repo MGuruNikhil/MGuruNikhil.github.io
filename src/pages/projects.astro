@@ -1,40 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+
+const projects = [
+  {
+    title: 'Hackin',
+    description:
+      'From idea to demo in record time - AI-powered hackathon companion that guides teams through every step of the development journey.',
+    tech: 'Next.js, Open Router, Typescript, Tailwind CSS, Drizzle ORM, Github OAuth',
+    repo: 'https://github.com/MGuruNikhil/hackin',
+    live: 'https://buildfaster.vercel.app/',
+  },
+  {
+    title: 'LearnSphere',
+    description:
+      'Generates complete courses from study materials or PDFs with features like notes, flashcards, Q&A, and quizzes.',
+    tech: 'Next.js, GeminiAPI, Typescript',
+    repo: 'https://github.com/MGuruNikhil/learnSphere',
+    live: 'https://learn.photons.live/',
+  },
+  {
+    title: 'theConnection',
+    description:
+      'A React + Firebase chat app with email verification, password reset, guest login, and cross-platform messaging.',
+    tech: 'Firebase, React.js, Tailwind CSS, shadcn',
+    repo: 'https://github.com/MGuruNikhil/theConnection',
+    live: 'https://theconnection.vercel.app/',
+  },
+  {
+    title: 'Ritual',
+    description:
+      'Cross-platform habit tracking app with reminders, streaks, heatmap, and advanced progress insights.',
+    tech: 'React Native (Expo), JavaScript',
+    repo: 'https://github.com/MGuruNikhil/ritual',
+  },
+]
+
 ---
+
 <Layout>
   <section class="container mx-auto py-12 px-4">
     <h2 class="text-3xl font-semibold">Projects</h2>
-    <p class="mt-4 text-slate-600">Selected projects and links.</p>
+    <p class="mt-4 muted-theme">Selected projects and links.</p>
 
     <div class="mt-6 grid md:grid-cols-2 gap-4">
-      <div class="border rounded p-4">
-        <h3 class="font-semibold">Hackin</h3>
-        <p class="text-sm text-slate-600 mt-2">From idea to demo in record time - AI-powered hackathon companion that guides teams through every step of the development journey.</p>
-        <p class="text-xs mt-2 text-slate-500">Tech: Next.js, Open Router, Typescript, Tailwind CSS, Drizzle ORM, Github OAuth</p>
-        <div class="mt-3 text-sm"><a href="https://github.com/MGuruNikhil/hackin" class="text-[var(--blue)]">Repo</a> · <a href="https://buildfaster.vercel.app/" class="text-[var(--blue)]">Live</a></div>
-      </div>
-
-      <div class="border rounded p-4">
-        <h3 class="font-semibold">LearnSphere</h3>
-        <p class="text-sm text-slate-600 mt-2">Generates complete courses from study materials or PDFs with features like notes, flashcards, Q&A, and quizzes.</p>
-        <p class="text-xs mt-2 text-slate-500">Tech: Next.js, GeminiAPI, Typescript</p>
-        <div class="mt-3 text-sm"><a href="https://github.com/MGuruNikhil/learnSphere" class="text-[var(--blue)]">Repo</a> · <a href="https://learn.photons.live/" class="text-[var(--blue)]">Live</a></div>
-      </div>
-
-      <div class="border rounded p-4">
-        <h3 class="font-semibold">theConnection</h3>
-        <p class="text-sm text-slate-600 mt-2">A React + Firebase chat app with email verification, password reset, guest login, and cross-platform messaging.</p>
-        <p class="text-xs mt-2 text-slate-500">Tech: Firebase, React.js, Tailwind CSS, shadcn</p>
-        <div class="mt-3 text-sm"><a href="https://github.com/MGuruNikhil/theConnection" class="text-[var(--blue)]">Repo</a> · <a href="https://theconnection.vercel.app/" class="text-[var(--blue)]">Live</a></div>
-      </div>
-
-      <div class="border rounded p-4">
-        <h3 class="font-semibold">Ritual</h3>
-        <p class="text-sm text-slate-600 mt-2">Cross-platform habit tracking app with reminders, streaks, heatmap, and advanced progress insights.</p>
-        <p class="text-xs mt-2 text-slate-500">Tech: React Native (Expo), JavaScript</p>
-        <div class="mt-3 text-sm"><a href="https://github.com/MGuruNikhil/ritual" class="text-[var(--blue)]">Repo</a></div>
-      </div>
-
+      {projects.map(p => (
+        <ProjectCard {...p} />
+      ))}
     </div>
   </section>
 </Layout>

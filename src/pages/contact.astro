@@ -4,30 +4,30 @@ import Layout from '../layouts/Layout.astro'
 <Layout>
   <section class="container mx-auto py-12 px-4 max-w-xl">
     <h2 class="text-3xl font-semibold">Contact</h2>
-  <p class="mt-4">You can reach me at <a href="mailto:gurunikhilmangaraju@gmail.com" class="text-[var(--blue)]">gurunikhilmangaraju@gmail.com</a> or use the form below.</p>
+  <p class="mt-4 muted-theme">You can reach me at <a href="mailto:gurunikhilmangaraju@gmail.com" class="text-[var(--blue)]">gurunikhilmangaraju@gmail.com</a> or use the form below.</p>
 
     <form class="mt-6 space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
       <label class="block">
-        <span class="text-sm font-medium text-[var(--fg)]">Name</span>
+  <span class="text-sm font-medium fg-theme">Name</span>
         <input name="name" required
           class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]" />
       </label>
 
       <label class="block">
-        <span class="text-sm font-medium text-[var(--fg)]">Email</span>
+  <span class="text-sm font-medium fg-theme">Email</span>
         <input name="email" type="email" required
           class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]" />
       </label>
 
       <label class="block">
-        <span class="text-sm font-medium text-[var(--fg)]">Message</span>
+  <span class="text-sm font-medium fg-theme">Message</span>
         <textarea name="message" rows="5" required
           class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]"></textarea>
       </label>
 
       <div class="flex items-center gap-3">
-        <button type="submit" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] text-white rounded-md hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">Send</button>
-        <span class="text-sm text-[var(--muted)]">I'll reply within a few days.</span>
+  <button type="submit" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] text-white rounded-md hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">Send</button>
+  <span class="text-sm muted-theme">I'll reply within a few days.</span>
       </div>
     </form>
 

@@ -1,0 +1,14 @@
+---
+const { title, description, tech, repo, live } = Astro.props
+---
+
+<article class="border card-border card-bg rounded p-4">
+  <h3 class="font-semibold">{title}</h3>
+  <p class="text-sm muted-theme mt-2">{description}</p>
+  {tech ? <p class="text-xs mt-2 muted-theme">Tech: {tech}</p> : null}
+  <div class="mt-3 text-sm">
+    {repo ? <a href={repo} class="text-[var(--blue)]" target="_blank" rel="noreferrer">Repo</a> : null}
+    {repo && live ? <span> · </span> : null}
+    {live ? <a href={live} class="text-[var(--blue)]" target="_blank" rel="noreferrer">Live</a> : null}
+  </div>
+</article>

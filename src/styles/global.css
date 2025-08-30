@@ -56,6 +56,57 @@ html.dark {
   background-color: var(--mantle);
 }
 
+/* Theme toggle specific tweaks */
+#theme-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+#theme-toggle .icon{ transition: transform .15s ease; }
+#theme-toggle:active .icon{ transform: scale(.92) }
+
+/* Dark theme variable overrides (Catppuccin Mocha-ish approximations).
+   Assumption: user wants a dark counterpart to the Latte palette. These values
+   are chosen to be visually compatible with the existing variables. */
+html.dark {
+  --rosewater: #f2d5cf;
+  --flamingo: #f4b8e4;
+  --pink: #f5c2e7;
+  --mauve: #c6a0f6;
+  --red: #f38ba8;
+  --maroon: #eba0ac;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --blue: #8ab4f8;
+  --lavender: #b4befe;
+  --text: #cbd5ff;
+  --subtext-1: #b6bdd8;
+  --subtext-0: #9fa6c2;
+  --overlay-2: #8b91ab;
+  --overlay-1: #7b8096;
+  --overlay-0: #6b6e86;
+  --surface-2: #5b6072;
+  --surface-1: #494d64;
+  --surface-0: #363646;
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #111116;
+
+  --bg: var(--base);
+  --muted: var(--subtext-0);
+  --fg: var(--text);
+  --accent: var(--mauve);
+}
+
+/* Utility classes that use our CSS variables so Tailwind color utilities don't block theme changes */
+.bg-theme { background-color: var(--bg) }
+.fg-theme { color: var(--fg) }
+.muted-theme { color: var(--muted) }
+.accent-theme { color: var(--accent) }
+.card-bg { background-color: var(--surface-0) }
+.card-border { border-color: var(--surface-1) }
+
+
 /* Ensure main element expands when content is short but allows normal page scrolling when content overflows */
 main{flex: 1 0 auto}
 
@@ -81,9 +132,4 @@ main{flex: 1 0 auto}
 /* Ensure icons adapt to dark/light by inheriting currentColor */
 .theme-dark{ color:var(--fg); }
 .theme-light{ color:var(--fg); }
-
-/* theme toggle tweaks */
-.theme-toggle{ border:1px solid transparent }
-.theme-toggle:hover{ background-color: rgba(0,0,0,0.03) }
-.theme-toggle .icon{ width:1.5rem; height:1.5rem }
 
