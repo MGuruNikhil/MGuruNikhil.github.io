@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+<Layout>
+  <section class="container mx-auto py-12 px-4 max-w-xl">
+    <h2 class="text-3xl font-semibold">Contact</h2>
+    <p class="mt-4">You can reach me at <a href="mailto:gurunikhilmangaraju@gmail.com" class="text-[var(--blue)]">gurunikhilmangaraju@gmail.com</a> or use the form below.</p>
+
+    <form class="mt-6 space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
+      <label class="block">
+        <span class="text-sm">Name</span>
+        <input name="name" class="mt-1 block w-full rounded border-gray-300 shadow-sm" required />
+      </label>
+      <label class="block">
+        <span class="text-sm">Email</span>
+        <input name="email" type="email" class="mt-1 block w-full rounded border-gray-300 shadow-sm" required />
+      </label>
+      <label class="block">
+        <span class="text-sm">Message</span>
+        <textarea name="message" rows="5" class="mt-1 block w-full rounded border-gray-300 shadow-sm" required></textarea>
+      </label>
+      <button type="submit" class="inline-flex items-center px-4 py-2 bg-[var(--blue)] text-white rounded">Send</button>
+    </form>
+
+    <div class="mt-8 text-sm">
+      <p>GitHub: <a href="https://github.com/MGuruNikhil" class="text-[var(--blue)]">github.com/MGuruNikhil</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/gurunikhilm/" class="text-[var(--blue)]">/in/gurunikhilm</a></p>
+      <p>LeetCode: <a href="https://leetcode.com/u/GuruNikhilM/" class="text-[var(--blue)]">LeetCode</a></p>
+      <p>CodeChef: <a href="https://www.codechef.com/users/m_guru_nikhil" class="text-[var(--blue)]">CodeChef</a></p>
+    </div>
+  </section>
+</Layout>

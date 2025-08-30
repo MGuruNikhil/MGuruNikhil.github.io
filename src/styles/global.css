@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  /* Catppuccin Latte palette (user provided) */
+  --rosewater: #dc8a78;
+  --flamingo: #dd7878;
+  --pink: #ea76cb;
+  --mauve: #8839ef;
+  --red: #d20f39;
+  --maroon: #e64553;
+  --peach: #fe640b;
+  --yellow: #df8e1d;
+  --green: #40a02b;
+  --teal: #179299;
+  --sky: #04a5e5;
+  --sapphire: #209fb5;
+  --blue: #1e66f5;
+  --lavender: #7287fd;
+  --text: #4c4f69;
+  --subtext-1: #5c5f77;
+  --subtext-0: #6c6f85;
+  --overlay-2: #7c7f93;
+  --overlay-1: #7c7f93;
+  --overlay-0: #9ca0b0;
+  --surface-2: #acb0be;
+  --surface-1: #bcc0cc;
+  --surface-0: #ccd0da;
+  --base: #eff1f5;
+  --mantle: #e6e9ef;
+  --crust: #dce0e8;
+
+  --bg: var(--base);
+  --muted: var(--subtext-0);
+  --fg: var(--text);
+  --accent: var(--mauve);
+}
+
+/* Font stack */
+body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+
+/* Basic element styles */
+body{background-color:var(--bg); color:var(--fg)}
+
+/* Utility subtle animation for links */
+.link-underline {
+  position: relative;
+}
+.link-underline::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0%; height: 2px; background:var(--accent);
+  transition: width .25s ease;
+}
+.link-underline:hover::after{ width:100%; }
+

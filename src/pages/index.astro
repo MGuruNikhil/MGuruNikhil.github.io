@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+<Layout>
+  <section class="container mx-auto py-16 px-4">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl font-bold">Guru Nikhil Mangaraju</h1>
+        <p class="mt-4 text-lg text-slate-700">Full Stack Developer and Computer Science student passionate about building scalable web applications and AI-powered platforms. Experienced in Next.js, React, GraphQL, and modern full-stack development.</p>
+
+        <div class="mt-6 flex gap-3">
+          <a href="/projects" class="px-4 py-2 bg-[var(--accent)] text-white rounded">See projects</a>
+          <a href="/contact" class="px-4 py-2 border rounded">Contact</a>
+        </div>
+
+        <div class="mt-8">
+          <h3 class="text-sm font-semibold">Skills</h3>
+          <p class="text-sm text-slate-600 mt-2">Next.js · React · GraphQL · TypeScript · Tailwind · Firebase · Node.js</p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <img src="https://github.com/MGuruNikhil.png" alt="avatar" class="mx-auto w-48 h-48 rounded-full shadow" />
+      </div>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold">Selected projects</h2>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <article class="p-4 border rounded">
+          <h3 class="font-semibold">Hackin</h3>
+          <p class="text-sm text-slate-600 mt-2">From idea to demo in record time - AI-powered hackathon companion that guides teams through every step. Features include notes generation, flashcards, Q&A, and quizzes.</p>
+          <div class="mt-3 text-sm"><a href="https://github.com/MGuruNikhil/hackin" class="text-[var(--blue)]">Repo</a> · <a href="https://buildfaster.vercel.app/" class="text-[var(--blue)]">Live</a></div>
+        </article>
+
+        <article class="p-4 border rounded">
+          <h3 class="font-semibold">LearnSphere</h3>
+          <p class="text-sm text-slate-600 mt-2">Generates complete courses from study materials or PDFs with notes, flashcards, Q&A, and quizzes.</p>
+          <div class="mt-3 text-sm"><a href="https://github.com/MGuruNikhil/learnSphere" class="text-[var(--blue)]">Repo</a> · <a href="https://learn.photons.live/" class="text-[var(--blue)]">Live</a></div>
+        </article>
+      </div>
+    </section>
+  </section>
+</Layout>
