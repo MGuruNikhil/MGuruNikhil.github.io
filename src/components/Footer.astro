@@ -1,8 +1,21 @@
 ---
+import IconSprite from './IconSprite.astro'
 ---
+
 <footer class="border-t border-slate-200 dark:border-slate-700 mt-0 bg-[var(--bg)] dark:bg-[var(--mantle)]">
+  <IconSprite />
   <div class="container mx-auto px-4 py-6 text-center text-sm">
-    © <span id="year"></span> Guru Nikhil Mangaraju — <a href="https://github.com/MGuruNikhil" target="_blank" rel="noreferrer">GitHub</a>
+    <div class="flex items-center justify-center gap-4">
+      <a class="icon-link" href="https://github.com/MGuruNikhil" target="_blank" rel="noreferrer" aria-label="GitHub">
+        <svg class="icon"><use href="#icon-github" /></svg>
+      </a>
+      <a class="icon-link" href="https://www.linkedin.com/in/gurunikhilm/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <svg class="icon"><use href="#icon-linkedin" /></svg>
+      </a>
+  <a class="text-sm text-slate-600 hover:underline" href="mailto:gurunikhilmangaraju@gmail.com">Contact</a>
+    </div>
+
+    <div class="mt-3">© <span id="year"></span> Guru Nikhil Mangaraju</div>
   </div>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </footer>
