@@ -26,8 +26,24 @@ jobs:
           mkdir -p dist
           touch dist/.nojekyll
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      - name: Publish to repository `docs/` folder
+        # This copies the built site into the repository's docs/ folder and commits
+        # It is suitable for user/organization pages (username.github.io) where
+        # GitHub Pages serves from the default branch (main) and optionally /docs.
+        run: |
+          set -e
+          # prepare docs folder
+          rm -rf docs
+          mkdir -p docs
+          cp -a dist/. docs/
+          touch docs/.nojekyll
+          # commit only if there are changes
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then
+            echo "No changes to docs/ - skipping commit"
+          else
+            git commit -m "chore(ci): update docs from build"
+            git push origin HEAD:main
+          fi
