@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+# Allow the workflow to push the built site to the gh-pages branch
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
