@@ -17,6 +17,11 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Ensure no Jekyll processing
+        run: |
+          mkdir -p dist
+          touch dist/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
