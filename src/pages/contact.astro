@@ -6,7 +6,11 @@ import Layout from '../layouts/Layout.astro'
     <h2 class="text-3xl font-semibold">Contact</h2>
   <p class="mt-4 muted-theme">You can reach me at <a href="mailto:gurunikhilmangaraju@gmail.com" class="text-[var(--blue)]">gurunikhilmangaraju@gmail.com</a> or use the form below.</p>
 
-    <form class="mt-6 space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
+    <form class="mt-6 space-y-4" action="https://formspree.io/f/xovnlwle" method="POST" novalidate>
+      <!-- Honeypot to deter spam -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+      <!-- Optional: set subject shown in Formspree email -->
+      <input type="hidden" name="_subject" value="New contact form submission from your website" />
       <label class="block">
   <span class="text-sm font-medium fg-theme">Name</span>
         <input name="name" required
@@ -25,10 +29,13 @@ import Layout from '../layouts/Layout.astro'
           class="mt-1 block w-full rounded-md border border-[var(--surface-1)] bg-[var(--surface-0)] px-3 py-2 text-[var(--fg)] placeholder:text-[var(--muted)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]"></textarea>
       </label>
 
-      <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3">
   <button type="submit" class="inline-flex items-center px-4 py-2 bg-[var(--accent)] text-white rounded-md hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]">Send</button>
   <span class="text-sm muted-theme">I'll reply within a few days.</span>
-      </div>
+    </div>
+
+    <!-- status message inserted by JS -->
+    <div id="contact-status" class="mt-4 text-sm" aria-live="polite"></div>
     </form>
 
     <div class="mt-8 text-sm space-y-1 text-[var(--fg)]">
@@ -38,4 +45,43 @@ import Layout from '../layouts/Layout.astro'
       <p>CodeChef: <a href="https://www.codechef.com/users/m_guru_nikhil" class="text-[var(--blue)]">CodeChef</a></p>
     </div>
   </section>
+  <script type="module">
+    // Client-side submit to Formspree to show inline success/error messaging.
+    const form = document.querySelector('form[action="https://formspree.io/f/xovnlwle"]');
+    const statusEl = document.getElementById('contact-status');
+    if (form && statusEl) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        statusEl.textContent = '';
+
+        // Basic client-side validation
+        const name = form.querySelector('[name="name"]')?.value?.trim();
+        const email = form.querySelector('[name="email"]')?.value?.trim();
+        const message = form.querySelector('[name="message"]')?.value?.trim();
+        if (!name || !email || !message) {
+          statusEl.textContent = 'Please fill out all required fields.';
+          return;
+        }
+
+        // Submit via fetch to get JSON response from Formspree
+        const data = new FormData(form);
+        try {
+          const resp = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (resp.ok) {
+            form.reset();
+            statusEl.textContent = 'Thanks — your message has been sent.';
+          } else {
+            const err = await resp.json().catch(() => ({}));
+            statusEl.textContent = err.error || 'Something went wrong. Please try again later.';
+          }
+        } catch (err) {
+          statusEl.textContent = 'Network error. Please try again later.';
+        }
+      });
+    }
+  </script>
 </Layout>
