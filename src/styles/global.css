@@ -125,9 +125,17 @@ main{flex: 1 0 auto}
 
 /* Icon utilities */
 .icon{ width:1.25rem; height:1.25rem; display:inline-block; vertical-align:middle; color:var(--fg); }
-.icon-link{ color:var(--muted); display:inline-flex; align-items:center; justify-content:center; padding:.125rem; border-radius:.375rem; }
+.icon-link{ color:var(--muted); align-items:center; justify-content:center; padding:.125rem; border-radius:.375rem; }
 .icon-link:hover{ color:var(--accent); }
 .icon svg{ display:block; }
+
+/* Only set display on small viewports so Tailwind's responsive utilities
+   (for example `md:hidden` or `sm:inline-flex`) can control layout on
+   larger screens. This keeps the mobile menu toggle hidden at md+ when
+   `md:hidden` is present. */
+@media (max-width: 767px) {
+  .icon-link:not(.hidden){ display: inline-flex; }
+}
 
 /* Ensure icons adapt to dark/light by inheriting currentColor */
 .theme-dark{ color:var(--fg); }

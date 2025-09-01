@@ -28,10 +28,10 @@ import IconSprite from './IconSprite.astro'
         <svg id="theme-icon" class="icon"><use href="#icon-sun" /></svg>
       </button>
 
-      <a class="icon-link" href="https://github.com/MGuruNikhil" target="_blank" rel="noreferrer" aria-label="GitHub">
+      <a class="icon-link hidden md:inline-flex" href="https://github.com/MGuruNikhil" target="_blank" rel="noreferrer" aria-label="GitHub">
         <svg class="icon"><use href="#icon-github" /></svg>
       </a>
-      <a class="icon-link" href="https://www.linkedin.com/in/gurunikhilm/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+      <a class="icon-link hidden md:inline-flex" href="https://www.linkedin.com/in/gurunikhilm/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
         <svg class="icon"><use href="#icon-linkedin" /></svg>
       </a>
     </div>
@@ -118,6 +118,17 @@ import IconSprite from './IconSprite.astro'
 
       // Keep initial state consistent with markup
       setOpen(false)
+
+      // Ensure the mobile menu closes automatically when viewport becomes large
+      // (match Tailwind's `md` breakpoint at 768px). This prevents the mobile
+      // menu from remaining visible after a user opens it and then resizes the
+      // window to a larger width.
+      var mq = window.matchMedia && window.matchMedia('(min-width: 768px)')
+      if (mq) {
+        var mqHandler = function (ev) { if (ev.matches) setOpen(false) }
+        if (mq.addEventListener) mq.addEventListener('change', mqHandler)
+        else if (mq.addListener) mq.addListener(mqHandler)
+      }
     } catch (err) { console.warn('Mobile menu init failed', err) }
   })()
 </script>
