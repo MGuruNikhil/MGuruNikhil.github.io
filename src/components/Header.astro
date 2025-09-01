@@ -19,6 +19,11 @@ import IconSprite from './IconSprite.astro'
     </nav>
 
     <div class="flex items-center gap-3">
+      <!-- Mobile menu toggle (visible on small screens) -->
+      <button id="mobile-menu-toggle" class="md:hidden icon-link" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <svg id="mobile-menu-icon" class="icon"><use href="#icon-menu" /></svg>
+      </button>
+
       <button id="theme-toggle" class="icon-link" aria-label="Toggle theme" aria-pressed="false" type="button">
         <svg id="theme-icon" class="icon"><use href="#icon-sun" /></svg>
       </button>
@@ -31,8 +36,19 @@ import IconSprite from './IconSprite.astro'
       </a>
     </div>
   </div>
+</div>
 
-  
+  <!-- Mobile navigation (hidden by default, shown when toggled) -->
+  <nav id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+    <div class="flex flex-col gap-3 text-sm">
+      <a href="/about" class="link-underline">About</a>
+      <a href="/projects" class="link-underline">Projects</a>
+      <a href="/work" class="link-underline">Work</a>
+      <a href="/resume" class="link-underline">Resume</a>
+      <a href="/contact" class="link-underline">Contact</a>
+    </div>
+  </nav>
+
 </header>
 
 <script is:inline>
@@ -64,5 +80,44 @@ import IconSprite from './IconSprite.astro'
       // Also listen for programmatic theme changes
       window.addEventListener('themechange', function (e) { updateIcon(e.detail && e.detail.theme) })
     } catch (e) { console.warn('Theme toggle init failed', e) }
+  })()
+</script>
+
+<script is:inline>
+  (function () {
+    try {
+      var mobileBtn = document.getElementById('mobile-menu-toggle')
+      var mobileIcon = document.getElementById('mobile-menu-icon')
+      var mobileMenu = document.getElementById('mobile-menu')
+      if (!mobileBtn || !mobileIcon || !mobileMenu) return
+
+      function setOpen(open) {
+        mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false')
+        if (open) {
+          mobileMenu.classList.remove('hidden')
+          mobileIcon.querySelector('use').setAttribute('href', '#icon-close')
+        } else {
+          mobileMenu.classList.add('hidden')
+          mobileIcon.querySelector('use').setAttribute('href', '#icon-menu')
+        }
+      }
+
+      // Toggle on click
+      mobileBtn.addEventListener('click', function () { setOpen(mobileBtn.getAttribute('aria-expanded') !== 'true') })
+
+      // Close on escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === 'Esc') setOpen(false)
+      })
+
+      // Close when a nav link is activated (good for single-page/hard navigation)
+      mobileMenu.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a')
+        if (a) setOpen(false)
+      })
+
+      // Keep initial state consistent with markup
+      setOpen(false)
+    } catch (err) { console.warn('Mobile menu init failed', err) }
   })()
 </script>
